@@ -1,0 +1,4 @@
+
+# ignore nginx "make" files
+objs/
+nginx-*/Makefile
