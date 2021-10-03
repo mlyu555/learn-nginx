@@ -1,0 +1,9 @@
+# 临时设置
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/include
+
+# 查看
+echo $LD_LIBRARY_PATH
+
+
+# 添加头文件目录: /usr/local/include
+# 添加动态库目录: /usr/local/lib
