@@ -21,18 +21,19 @@ typedef struct {
 } ngx_http_conf_ctx_t;
 
 
+// 解析nginx.conf中的http块(8个callback, 执行顺序)
 typedef struct {
-    ngx_int_t   (*preconfiguration)(ngx_conf_t *cf);
-    ngx_int_t   (*postconfiguration)(ngx_conf_t *cf);
+    ngx_int_t   (*preconfiguration)(ngx_conf_t *cf);                            // order 1
+    ngx_int_t   (*postconfiguration)(ngx_conf_t *cf);                           // order 8
 
-    void       *(*create_main_conf)(ngx_conf_t *cf);
-    char       *(*init_main_conf)(ngx_conf_t *cf, void *conf);
+    void       *(*create_main_conf)(ngx_conf_t *cf);                            // order 2
+    char       *(*init_main_conf)(ngx_conf_t *cf, void *conf);                  // order 7
 
-    void       *(*create_srv_conf)(ngx_conf_t *cf);
-    char       *(*merge_srv_conf)(ngx_conf_t *cf, void *prev, void *conf);
+    void       *(*create_srv_conf)(ngx_conf_t *cf);                             // order 3
+    char       *(*merge_srv_conf)(ngx_conf_t *cf, void *prev, void *conf);      // order 6
 
-    void       *(*create_loc_conf)(ngx_conf_t *cf);
-    char       *(*merge_loc_conf)(ngx_conf_t *cf, void *prev, void *conf);
+    void       *(*create_loc_conf)(ngx_conf_t *cf);                             // order 4
+    char       *(*merge_loc_conf)(ngx_conf_t *cf, void *prev, void *conf);      // order 5
 } ngx_http_module_t;
 
 

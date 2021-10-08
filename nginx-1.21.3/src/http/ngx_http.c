@@ -84,9 +84,9 @@ ngx_str_t  ngx_http_html_default_types[] = {
 
 static ngx_command_t  ngx_http_commands[] = {
 
-    { ngx_string("http"),
+    { ngx_string("http"),                               // step http1
       NGX_MAIN_CONF|NGX_CONF_BLOCK|NGX_CONF_NOARGS,
-      ngx_http_block,
+      ngx_http_block,                                   // goto step http2
       0,
       0,
       NULL },
@@ -118,8 +118,9 @@ ngx_module_t  ngx_http_module = {
 };
 
 
+// 在nginx -c nginx.conf时执行
 static char *
-ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
+ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)   // step http2
 {
     char                        *rv;
     ngx_uint_t                   mi, m, s;
@@ -1747,6 +1748,7 @@ ngx_http_add_listening(ngx_conf_t *cf, ngx_http_conf_addr_t *addr)
 
     ls->addr_ntop = 1;
 
+    // 每次http请求时执行ngx_http_init_connection
     ls->handler = ngx_http_init_connection;
 
     cscf = addr->default_server;

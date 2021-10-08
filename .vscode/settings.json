@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "env": "shellscript",
+        "ngx_palloc.h": "c",
+        "ngx_config.h": "c",
+        "ngx_string.h": "c",
+        "ngx_core.h": "c"
+    }
+}
